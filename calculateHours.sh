@@ -1,15 +1,29 @@
 #!/bin/bash
 
-sed -i .bak 's/[Aa]\./A/g' hours.txt
-sed -i .bak 's/[Pp]\./P/g' hours.txt
-sed -i .bak 's/[Mm]\./M/g' hours.txt
+unamestr = $(uname)
+if [[ "$unamestr" == 'Linux' ]]; then
+    sed -i "s/[Aa]\./A/g" hours.txt
+    sed -i "s/[Pp]\./P/g" hours.txt
+    sed -i "s/[Mm]\./M/g" hours.txt
 
-# fixes a hard to notice mistake
-sed -i .bak 's/;/:/g' hours.txt
+    # fixes a hard to notice mistake
+    sed -i "s/;/:/g" hours.txt
 
-sed -i .bak 's/[Aa][Mm]/ AM/g' hours.txt
-sed -i .bak 's/[Pp][Mm]/ PM/g' hours.txt
-sed -i .bak 's/  */ /g' hours.txt
+    sed -i "s/[Aa][Mm]/ AM/g" hours.txt
+    sed -i "s/[Pp][Mm]/ PM/g" hours.txt
+    sed -i "s/  */ /g" hours.txt
+else
+    sed -i .bak 's/[Aa]\./A/g' hours.txt
+    sed -i .bak 's/[Pp]\./P/g' hours.txt
+    sed -i .bak 's/[Mm]\./M/g' hours.txt
+
+    # fixes a hard to notice mistake
+    sed -i .bak 's/;/:/g' hours.txt
+
+    sed -i .bak 's/[Aa][Mm]/ AM/g' hours.txt
+    sed -i .bak 's/[Pp][Mm]/ PM/g' hours.txt
+    sed -i .bak 's/  */ /g' hours.txt
+fi
 
 awk '
 function time_to_hours(hours, mins, am_pm) {
