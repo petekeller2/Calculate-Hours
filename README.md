@@ -1,4 +1,4 @@
-Put the hours use want to measure into hours.txt 
+Put the hours you want to measure into hours.txt 
 
 Example: Run on treadmill (7:00 AM - 7:30 AM)
 
